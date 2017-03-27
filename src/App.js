@@ -2,7 +2,24 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-const data = [1,2,3]
+const data = [
+  {
+    title: 'React',
+    url: 'https://facebook.github.io/react/',
+    author: 'Jordan Walke',
+    num_comments: 3,
+    points: 4,
+    objectID: 0
+  },
+  {
+    title: 'Reduct',
+    url: 'https://github.com/reactjs/redux',
+    author: 'Dan Abramov, Andrew Clark',
+    num_comments: 2,
+    points: 5,
+    objectID: 1
+  }
+]
 class App extends Component {
   render() {
     return (
@@ -15,7 +32,7 @@ class App extends Component {
           <ul>
             { data.map((item) => {
               return (
-                <li>{item}</li>
+                <li><a href={item.url} target="_blank">{item.title}</a></li>
               )
             })
             }
