@@ -21,6 +21,12 @@ const data = [
   }
 ]
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      data
+    }
+  }
   render() {
     return (
       <div className="App">
@@ -28,16 +34,16 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <p className="App-intro">
+        <div className="App-intro">
           <ul>
-            { data.map((item) => {
+            { this.state.data.map((item, index) => {
               return (
-                <li><a href={item.url} target="_blank">{item.title}</a></li>
+                <li key={index}><a href={item.url} target="_blank">{item.title}</a></li>
               )
             })
             }
           </ul>
-        </p>
+        </div>
       </div>
     );
   }
