@@ -118,6 +118,12 @@ const data = [
 ]
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      data: data
+    }
+  }
     render() {
         return (
             <div className="App">
@@ -128,10 +134,10 @@ class App extends Component {
                 <div>
 
                   <ul>
-                    {data.map((item, index) => {
+                    {this.state.data.map((item, index) => {
                       console.log('isi item : ',item);
                       return (
-                        <li key={index}>{item.title}</li>
+                        <li key={index}><a href={item.url}> {item.title}</a></li>
                       )
                     })
                   }
