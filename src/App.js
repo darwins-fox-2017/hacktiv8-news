@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+const data = [1,2,3]
 class App extends Component {
   render() {
     return (
@@ -11,7 +12,14 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          <ul>
+            { data.map((item) => {
+              return (
+                <li>{item}</li>
+              )
+            })
+            }
+          </ul>
         </p>
       </div>
     );
