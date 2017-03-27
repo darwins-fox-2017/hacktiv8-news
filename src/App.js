@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Search from './components/Search'
+import List from './components/List'
 
 const data = [
     {
@@ -118,12 +120,18 @@ const data = [
 ]
 
 class App extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      data: data
+    constructor() {
+        super()
+        this.state = {
+            data: data,
+            query: ''
+        }
     }
-  }
+
+    searchNews(event) {
+        this.setState({query: event.target.value})
+    }
+
     render() {
         return (
             <div className="App">
@@ -132,16 +140,11 @@ class App extends Component {
                     <h2>Sugeng rawuh marang React</h2>
                 </div>
                 <div>
+                    <br/>
+                    <br/>
+                    <Search handleChange={this.searchNews.bind(this)}/>
+                    <List handleSearch={this.state.query} data={this.state.data} />
 
-                  <ul>
-                    {this.state.data.map((item, index) => {
-                      console.log('isi item : ',item);
-                      return (
-                        <li key={index}><a href={item.url}> {item.title}</a></li>
-                      )
-                    })
-                  }
-                </ul>
                 </div>
             </div>
         );
