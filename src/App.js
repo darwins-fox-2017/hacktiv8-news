@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import News from './components/News'
+import Search from './components/Search'
 
 const data = [
   {
@@ -43,22 +45,8 @@ class App extends Component {
           Hacktiv8 News
         </p>
 
-				<form>
-					<input type="text" onChange = {this.searchNews.bind(this)} />
-				</form>
-
-        <div className="example">
-          <ul>
-            {this.state.data.filter((item, index)=>{
-							let patternFilter = new RegExp(this.state.keyWord,'gi')
-							return patternFilter.test(item.title)
-						}).map((item, index)=>{
-              return(
-                <li key={index}><a href={item.url} target="_blank">{item.title}</a></li>
-              )
-            })}
-          </ul>
-        </div>
+				<Search handleChange = {this.searchNews.bind(this)}/>
+				<News handleKeyword={this.state.keyWord} data={this.state.data}/>
       </div>
     );
   }
