@@ -27,6 +27,11 @@ class App extends Component {
 			data : data
 		}
 	}
+	searchNews(event){
+		this.setState({
+			keyWord:event.target.value
+		})
+	}
   render() {
     return (
       <div className="App">
@@ -38,9 +43,16 @@ class App extends Component {
           Hacktiv8 News
         </p>
 
+				<form>
+					<input type="text" onChange = {this.searchNews.bind(this)} />
+				</form>
+
         <div className="example">
           <ul>
-            {this.state.data.map((item, index)=>{
+            {this.state.data.filter((item, index)=>{
+							let patternFilter = new RegExp(this.state.keyWord,'gi')
+							return patternFilter.test(item.title)
+						}).map((item, index)=>{
               return(
                 <li key={index}><a href={item.url} target="_blank">{item.title}</a></li>
               )
