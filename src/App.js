@@ -26,14 +26,31 @@ class App extends Component {
 	constructor(){
 		super()
 		this.state = {
-			data : data
+			data : data,
+			listNews:[]
 		}
 	}
+
+	componentDidMount(){
+		const self = this
+		fetch('https://hn.algolia.com/api/v1/search?query=redux')
+			.then((response, err) => {
+				if (err) throw err
+				return response.json()
+			})
+			.then(data => {
+				self.setState({
+				listNews : data.hits
+				})
+			})
+	}
+
 	searchNews(event){
 		this.setState({
 			keyWord:event.target.value
 		})
 	}
+
   render() {
     return (
       <div className="App">
@@ -46,7 +63,7 @@ class App extends Component {
         </p>
 
 				<Search handleChange = {this.searchNews.bind(this)}/>
-				<News handleKeyword={this.state.keyWord} data={this.state.data}/>
+				<News handleKeyword={this.state.keyWord} data={this.state.listNews}/>
       </div>
     );
   }
