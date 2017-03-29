@@ -29,11 +29,18 @@ class App extends Component {
       search:""
     }
   }
+  componentDidMount(){
+    fetch(`http://hn.algolia.com/api/v1/search?query=redux`)
+    .then(res => res.json())
+    .then(data => this.setState ({data: data.hits}))
+  }
   changeHandler(keyword){
     this.setState({
       search: keyword
     })
-
+    fetch(`http://hn.algolia.com/api/v1/search?query=${this.state.search}`)
+    .then(res => res.json())
+    .then(data => this.setState ({data: data.hits}))
   }
   render() {
     return (
