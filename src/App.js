@@ -24,8 +24,16 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      data
+      data,
+      search:""
     }
+  }
+  changeHandler(keyword){
+    console.log(keyword);
+    this.setState({
+      search: keyword
+    })
+
   }
   render() {
     return (
@@ -36,13 +44,17 @@ class App extends Component {
         </div>
         <div className="App-intro">
           <ul>
-            { this.state.data.map((item, index) => {
+            {
+              this.state.data.filter(results=> (results.title === null ? '' : results.title).match(new RegExp(this.state.search,'i'))).map((item, index) => {
               return (
                 <li key={index}><a href={item.url} target="_blank">{item.title}</a></li>
-              )
-            })
+                )
+              })
             }
           </ul>
+          <form>
+            <input type="text" placeholder="Search ..." onChange={(event)=>this.changeHandler(event.target.value)} />
+          </form>
         </div>
       </div>
     );
