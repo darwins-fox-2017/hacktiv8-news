@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import Form from './component/Form'
+import List from './component/List'
 const data = [
   {
     title: 'React',
@@ -29,7 +30,6 @@ class App extends Component {
     }
   }
   changeHandler(keyword){
-    console.log(keyword);
     this.setState({
       search: keyword
     })
@@ -43,18 +43,10 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <div className="App-intro">
-          <ul>
-            {
-              this.state.data.filter(results=> (results.title === null ? '' : results.title).match(new RegExp(this.state.search,'i'))).map((item, index) => {
-              return (
-                <li key={index}><a href={item.url} target="_blank">{item.title}</a></li>
-                )
-              })
-            }
-          </ul>
-          <form>
-            <input type="text" placeholder="Search ..." onChange={(event)=>this.changeHandler(event.target.value)} />
-          </form>
+          <List data={this.state.data} search={this.state.search}>
+          </List>
+          <Form changeHandler={(keyword)=>this.changeHandler(keyword)}>
+          </Form>
         </div>
       </div>
     );
