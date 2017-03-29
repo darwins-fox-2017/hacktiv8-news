@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Menu from './Menu'
 
 export default class People extends Component {
   constructor () {
@@ -28,6 +29,7 @@ export default class People extends Component {
 
     return (
       <div className="list-people">
+      <Menu />
       <h1>Peoples</h1>
       <ul>
         {

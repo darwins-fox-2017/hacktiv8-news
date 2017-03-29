@@ -1,0 +1,9 @@
+ul#test>li {
+  float:left;
+  margin-left: 10px;
+  list-style: none;
+}
+
+ul#test {
+  clear: both;
+}

@@ -1,22 +1,16 @@
 import React from 'react'
-import App from './App'
-import People from './People'
 import {
-  BrowserRouter as Router,
-  Route,
   Link
 } from 'react-router-dom'
 
 const Menu = () => (
-  <Router>
-    <ul>
+    <div className="container">
+    <ul id="test" className="list-menu">
       <li><Link to="/">News</Link></li>
       <li><Link to="/peoples">Peoples</Link></li>
-
-      <Route exact path="/" component={App} />
-      <Route path="/peoples" component={People} />
     </ul>
-  </Router>
+    <br />
+    </div>
 )
 
 export default Menu
