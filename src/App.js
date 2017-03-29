@@ -28,17 +28,32 @@ class App extends Component {
     }
   }
 
+  fetchHN () {
+    if(this.state.query !== '') {
+      fetch('https://hn.algolia.com/api/v1/search?query=' + this.state.query)
+      .then( (response) => {
+        return response.json()
+      })
+      .then( (response) => {
+        this.setState({
+          data: response.hits
+        })
+      })
+    }
+  }
+
   changeQuery(event) {
     this.setState({query: event.target.value});
+    this.fetchHN(this.state.query)
   }
   render() {
     return (
       <div className="App">
       <br />
         <form>
-          <input type="text" name="search" onChange={this.changeQuery.bind(this)} />
+          <input autoComplete="off" type="text" name="search" onChange={this.changeQuery.bind(this)} />
         </form>
-        <NewsList data={this.state.data} />
+        <NewsList query={this.state.query} data={this.state.data} />
       </div>
     );
   }
