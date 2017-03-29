@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewsList from './components/NewsList'
+import FormSearch from './components/FormSearch'
 import './App.css';
 
 class App extends Component {
@@ -49,11 +50,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <br />
-        <form>
-          <input autoComplete="off" type="text" name="search" onChange={this.changeQuery.bind(this)} />
-        </form>
-        <NewsList query={this.state.query} data={this.state.data} />
+
+        <FormSearch changeQuery={this.changeQuery.bind(this)} />
+        <NewsList
+        query={this.state.query}
+        data={this.state.data} />
+
       </div>
     );
   }
